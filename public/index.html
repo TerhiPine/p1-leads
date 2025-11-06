@@ -12,35 +12,27 @@
     <!-- Form for creating a new lead. 'id' is for JS, 'class' is for CSS. -->
     <form id="newLead" class="card" novalidate>
       <h2>Add lead</h2>
+      <!-- Error messages, first for screenreader, second for default user. -->
       <div id="formError" aria-live="polite" style="color:red; margin-bottom:8px;"></div>
-
-
-      <!-- The 'name' attribute is essential for FormData. It must match the server's expected keys. -->
-      <!-- Virheilmoitus -->
       <div id="formError" role="alert" style="color:#b00020; margin-bottom:8px;"></div>
 
-  <!-- Nimi -->
       <label for="name">Name</label>
       <input id="name" name="name" required />
 
-  <!-- Sähköposti -->
       <label for="email">Email</label>
       <input id="email" name="email" type="email" required />
 
-  <!-- Yritys -->
       <label for="company">Company</label>
       <input id="company" name="company" />
 
-  <!-- Lähde -->
       <label for="source">Source</label>
       <input id="source" name="source" />
 
-  <!-- Muistiinpanot -->
       <label for="notes">Notes</label>
       <textarea id="notes" name="notes"></textarea>
 
-  <button type="submit">Create</button>
-</form>
+    <button type="submit">Create</button>
+    </form>
 
     
     <!-- Section for displaying and filtering leads -->
@@ -59,6 +51,7 @@
         <!-- 'type="button"' is important so this button *doesn't* submit the form -->
         <button id="applyFilters" type="button">Apply</button>
       </div>
+      
       <table id="grid">
         <thead><tr><th>Name</th><th>Email</th><th>Company</th><th>Status</th><th>Actions</th></tr></thead>
         <tbody></tbody> <!-- This will be populated by app.js -->
