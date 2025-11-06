@@ -1,0 +1,17 @@
+{
+  "name": "p1-leads",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js", // The critical command run automatically by Render to start the production server.
+    "dev": "node server.js" // A separate command for local development (can be run via 'npm run dev').
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
