@@ -1,4 +1,4 @@
-/* Students can see the full code line by using the Scroll Bar at the Bottom*/
+
 <!doctype html>
 <html>
 <head>
@@ -10,37 +10,34 @@
   <main class="wrap">
     <h1>Micro CRM Leads</h1>
     <!-- Form for creating a new lead. 'id' is for JS, 'class' is for CSS. -->
-    <form id="newLead" class="card">
+    <form id="newLead" class="card" novalidate>
       <h2>Add lead</h2>
       <div id="formError" aria-live="polite" style="color:red; margin-bottom:8px;"></div>
 
 
       <!-- The 'name' attribute is essential for FormData. It must match the server's expected keys. -->
-     <form id="newLead" class="card" novalidate>
-  <h2>Add lead</h2>
-
-  <!-- Virheilmoitus -->
-  <div id="formError" role="alert" style="color:#b00020; margin-bottom:8px;"></div>
+      <!-- Virheilmoitus -->
+      <div id="formError" role="alert" style="color:#b00020; margin-bottom:8px;"></div>
 
   <!-- Nimi -->
-  <label for="name">Name</label>
-  <input id="name" name="name" required />
+      <label for="name">Name</label>
+      <input id="name" name="name" required />
 
   <!-- Sähköposti -->
-  <label for="email">Email</label>
-  <input id="email" name="email" type="email" required />
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" required />
 
   <!-- Yritys -->
-  <label for="company">Company</label>
-  <input id="company" name="company" />
+      <label for="company">Company</label>
+      <input id="company" name="company" />
 
   <!-- Lähde -->
-  <label for="source">Source</label>
-  <input id="source" name="source" />
+      <label for="source">Source</label>
+      <input id="source" name="source" />
 
   <!-- Muistiinpanot -->
-  <label for="notes">Notes</label>
-  <textarea id="notes" name="notes"></textarea>
+      <label for="notes">Notes</label>
+      <textarea id="notes" name="notes"></textarea>
 
   <button type="submit">Create</button>
 </form>
