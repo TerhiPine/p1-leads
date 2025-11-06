@@ -8,5 +8,45 @@
     "notes": "Uusi kilpailutukausi",
     "status": "Qualified",
     "createdAt": "2025-11-06T17:43:20.260Z"
+  },
+  {
+    "id": "1762461868325",
+    "name": "matti",
+    "email": "tepponen@netti.fi",
+    "company": "",
+    "source": "",
+    "notes": "",
+    "status": "New",
+    "createdAt": "2025-11-06T20:44:28.325Z"
+  },
+  {
+    "id": "1762462521861",
+    "name": "Teija",
+    "email": "teijanet@siivous.fi",
+    "company": "Suomen Siivouspalvelut",
+    "source": "Customer ID 12222",
+    "notes": "Yrityskauppa",
+    "status": "New",
+    "createdAt": "2025-11-06T20:55:21.861Z"
+  },
+  {
+    "id": "1762463378513",
+    "name": "Niina",
+    "email": "niinat@ninataroy.fi",
+    "company": "Ninatar Oy",
+    "source": "",
+    "notes": "",
+    "status": "New",
+    "createdAt": "2025-11-06T21:09:38.513Z"
+  },
+  {
+    "id": "1762464201390",
+    "name": "<script>alert('XSS')</script>",
+    "email": "hacked@you.now",
+    "company": "ugothacked",
+    "source": "",
+    "notes": "",
+    "status": "New",
+    "createdAt": "2025-11-06T21:23:21.390Z"
   }
 ]

@@ -12,6 +12,8 @@
     <!-- Form for creating a new lead. 'id' is for JS, 'class' is for CSS. -->
     <form id="newLead" class="card">
       <h2>Add lead</h2>
+      <div id="formError" style="color:red; margin-bottom:8px;"></div>
+
       <!-- The 'name' attribute is essential for FormData. It must match the server's expected keys. -->
       <label>Name<input name="name" required /></label>
       <label>Email<input name="email" type="email" required /></label> <!-- 'required' provides browser-level validation -->

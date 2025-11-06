@@ -18,3 +18,63 @@ th,td{padding:10px;border-top:1px solid #eef1f6}
 thead tr{background:#f7f9ff}
 /* Class to make action buttons look like links */
 button.link{background:transparent;border:none;color:#2e3a8c;cursor:pointer;text-decoration:underline}
+
+/* Make inputs, selects, textarea and buttons take full width on small screens */
+@media (max-width: 600px) {
+  input, select, textarea, button {
+    width: 100%;
+    box-sizing: border-box; /* Prevent padding from breaking layout */
+  }
+
+  .filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  table, thead, tbody, th, td, tr {
+    display: block;
+    width: 100%;
+  }
+
+  thead tr {
+    display: none; /* Hide table headers on small screens */
+  }
+
+  tbody tr {
+    margin-bottom: 12px;
+    border: 1px solid #eef1f6;
+    border-radius: 8px;
+    padding: 8px;
+  }
+
+  tbody td {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    border: none;
+    position: relative;
+  }
+
+  tbody td::before {
+    content: attr(data-label); /* Use data-label for each column */
+    font-weight: bold;
+    flex: 1;
+  }
+
+  tbody td:last-child {
+    display: flex;
+    justify-content: flex-start;
+    gap: 8px;
+  }
+    .wrap {
+    padding: 0 8px;
+  }
+
+  .card {
+    padding: 12px;
+  }
+
+  h1, h2 {
+    font-size: 1.2rem;
+  }
+}
