@@ -1,90 +1,117 @@
-/* Students can see the full code line by using the Scroll Bar at the Bottom*/
-// Get references to key elements in the HTML for later use.
-const grid = document.querySelector("#grid tbody"); // The table body where rows will be inserted
-const form = document.querySelector("#newLead");   // The 'Add lead' form
-const q = document.querySelector("#q");           // The search input field
-const statusSel = document.querySelector("#status"); // The status dropdown/select
+// Get references to key elements in the HTML for later use
+const grid = document.querySelector("#grid tbody"); // Table body
+const form = document.querySelector("#newLead");   // 'Add lead' form
+const q = document.querySelector("#q");           // Search input
+const statusSel = document.querySelector("#status"); // Status
+const formError = document.querySelector("#formError"); // For validation errors
 
-// Attach an event listener to the "Apply" filter button, making it call 'load()' when clicked.
+// Apply filters button
 document.querySelector("#applyFilters").addEventListener("click", load);
 
-// Attach an event listener to the form's 'submit' event.
-// 'async(e)' means this function can use 'await' for network requests.
+// Form submit with client-side validation
 form.addEventListener("submit", async (e) => {
-  // Stop the form from doing a default page reload, which is the browser's default behavior.
   e.preventDefault();
-  // Create a FormData object from the form, then convert it to a plain JS object.
+  formError.textContent = ""; // Clear previous errors
+
+
   const data = Object.fromEntries(new FormData(form).entries());
+
+  // Client-side validation
+  if (!data.name.trim() || !data.email.trim()) {
+    formError.textContent = "Name and email are required.";
+    return;
+  }
+
+  try {
+    const res = await fetch("/api/leads", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+
+    if (!res.ok) {
+      const err = await res.json();
+      formError.textContent = err.error || "Validation failed";
+      return;
+    }
+    await load(); 
+    form.reset(); 
+    
+  } 
   
-  // Send the data to the server's POST endpoint using 'fetch'. 'await' pauses the function until the server responds.
-  const res = await fetch("/api/leads", {
-    method: "POST", // Specify the HTTP method for creating data.
-    headers: { "Content-Type": "application/json" }, // Tell the server we are sending JSON data.
-    body: JSON.stringify(data) // Convert the JS object to a JSON string for sending.
-  });
-  
-  // If the server responded with an error (e.g., 400 validation error), show an alert.
-  if (!res.ok) { alert("Validation failed"); return; }
-  
-  form.reset(); // Clear the form fields for the next entry.
-  await load(); // Reload the grid to show the newly added lead.
+  catch (error) {
+    formError.textContent = "Network error, try again.";
+  }
 });
 
-// This is the main function to fetch and display all leads from the server.
+// Fetch and display leads
 async function load() {
-  // Create a URLSearchParams object to easily build the query string (e.g., ?q=test&status=New).
   const params = new URLSearchParams();
-  // If the search box has a value, add it to the query parameters.
   if (q.value) params.set("q", q.value);
-  // If the status dropdown has a value, add it.
   if (statusSel.value) params.set("status", statusSel.value);
-  
-  // Fetch the leads from the API, appending the query parameters string.
+
   const res = await fetch("/api/leads?" + params.toString());
-  const leads = await res.json(); // Get the JSON data (array of leads) from the response.
-  
-  // For each lead object in the array, call the 'row' function to get its HTML string.
-  // Then, join all the HTML strings together into one big string and update the grid.
-  grid.innerHTML = leads.map(row).join("");
-  
-  // After creating the new rows and buttons, we must attach event listeners to them.
-  bindActions();
+  const leads = await res.json();
+
+  renderLeads(leads);
 }
 
-// This function is a template. It takes a lead object 'l' and returns an HTML string for its table row.
-function row(l) {
-  // Use a template literal (backticks) for easy multi-line HTML and variable insertion.
-  return `<tr>
-    <td>${l.name}</td>
-    <td>${l.email}</td>
-    <td>${l.company || ""}</td> <!-- Show empty string if company is null/undefined -->
-    <td>${l.status}</td>
-    <td>
-      <!-- Use 'data-id' to store the lead's ID on the button -->
-      <!-- Use 'data-s' to store the new status this button will set -->
-      <button class="link" data-id="${l.id}" data-s="Contacted">Mark contacted</button>
-      <button class="link" data-id="${l.id}" data-s="Qualified">Mark qualified</button>
-      <button class="link" data-id="${l.id}" data-s="Lost">Mark lost</button>
-    </td>
-  </tr>`;
+// Render leads using DOM-API (safe)
+function renderLeads(leads) {
+  grid.innerHTML = ""; // Clear table
+
+  leads.forEach(l => {
+    const tr = document.createElement("tr");
+
+    const tdName = document.createElement("td");
+    tdName.dataset.label = "Name";
+    tdName.textContent = l.name || "";
+
+    const tdEmail = document.createElement("td");
+    tdEmail.dataset.label = "Email";
+    tdEmail.textContent = l.email || "";
+
+    const tdCompany = document.createElement("td");
+    tdCompany.dataset.label = "Company";
+    tdCompany.textContent = l.company || "";
+
+    const tdStatus = document.createElement("td");
+    tdStatus.dataset.label = "Status";
+    tdStatus.textContent = l.status || "";
+
+    const tdActions = document.createElement("td");
+    tdActions.dataset.label = "Actions";
+
+    ["Contacted", "Qualified", "Lost"].forEach(s => {
+      const btn = document.createElement("button");
+      btn.className = "link";
+      btn.type = "button";
+      btn.dataset.id = l.id;
+      btn.dataset.s = s;
+      btn.textContent = `Mark ${s.toLowerCase()}`;
+      tdActions.appendChild(btn);
+    });
+
+    tr.append(tdName, tdEmail, tdCompany, tdStatus, tdActions);
+    grid.appendChild(tr);
+  });
+
+  bindActions(); // Attach click listeners to buttons
 }
 
-// This function attaches click listeners to all action buttons currently in the grid.
+// Attach click listeners to action buttons
 function bindActions() {
-  // Find all buttons with class "link" inside the grid.
   document.querySelectorAll("#grid button.link").forEach(b => {
-    // Add a click listener to each button.
     b.addEventListener("click", async () => {
-      // When clicked, send a PATCH request to the server to update the status.
-      await fetch("/api/leads/" + b.dataset.id, { // Use the ID from the button's data-id
-        method: "PATCH", // Use PATCH for partial updates
+      await fetch("/api/leads/" + b.dataset.id, {
+        method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ status: b.dataset.s }) // Send the new status from data-s
+        body: JSON.stringify({ status: b.dataset.s })
       });
-      load(); // Reload the grid to show the change.
+      load(); // Refresh table after status change
     });
   });
 }
 
-// Initial load of data when the script first runs.
+// Initial load
 load();
