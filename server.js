@@ -27,16 +27,16 @@ app.use(express.static(path.join(__dirname, "public")));
 // Asynkroninen safe read
 async function readLeadsAsync() {
   try {
-    await fsPromises.access(DATA);           // Tarkistetaan, että tiedosto on olemassa
+    await fsPromises.access(DATA);           // Checking that the file exists
     const content = await fsPromises.readFile(DATA, "utf8");
-    return content ? JSON.parse(content) : []; // Palauta tyhjä lista jos tiedosto tyhjä
+    return content ? JSON.parse(content) : []; // Return an empty list if the file is empty
   } catch (err) {
     console.error("Failed to read leads.json:", err);
-    return []; // Palauta aina tyhjä lista virheen sattuessa
+    return []; //Always return an empty list on error
   }
 }
 
-// Asynkroninen safe write
+// Asynchronous safe write
 async function writeLeadsAsync(leads) {
   try {
     await fsPromises.writeFile(DATA, JSON.stringify(leads || [], null, 2), "utf8");
@@ -108,7 +108,7 @@ app.delete("/api/leads/:id", async (req, res) => {
   const idx = leads.findIndex(l => l.id === req.params.id);
   if (idx === -1) return res.status(404).json({ error: "Not found" });
 
-  const deletedLead = leads.splice(idx, 1)[0]; // Poistetaan lead
+  const deletedLead = leads.splice(idx, 1)[0]; // Delete lead
   await writeLeadsAsync(leads);               // async write
   res.json({ message: "Lead deleted", lead: deletedLead });
 });

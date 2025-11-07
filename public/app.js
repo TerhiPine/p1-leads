@@ -1,26 +1,26 @@
 // =======================
-// Elementtiviittaukset
+// Elements
 // =======================
-const grid = document.querySelector("#grid tbody");       // Taulukon body
-const form = document.querySelector("#newLead");          // Lomake
-const q = document.querySelector("#q");                   // Hakukenttä
+const grid = document.querySelector("#grid tbody");       // Table body
+const form = document.querySelector("#newLead");          // Form
+const q = document.querySelector("#q");                   // Search field
 const statusSel = document.querySelector("#status");      // Status-select
-const formError = document.querySelector("#formError");   // Virheviestit
-const formSuccess = document.querySelector("#formSuccess"); // Onnistumisviestit
-const gridStatus = document.querySelector("#gridStatus"); // Lataus / tyhjäviesti
+const formError = document.querySelector("#formError");   // Error messages
+const formSuccess = document.querySelector("#formSuccess"); // Success messages
+const gridStatus = document.querySelector("#gridStatus"); // Loading / empty message
 
 // =======================
-// Apufunktiot
+// Functions
 // =======================
 
-// Näyttää virheilmoituksen
+// Displays an error message
 function showError(msg) {
   formError.textContent = msg;
   formError.style.color = "red";
   formSuccess.textContent = "";
 }
 
-// Näyttää onnistumisviestin
+// Displays a success message
 function showSuccess(msg) {
   formSuccess.textContent = msg;
   formSuccess.style.color = "green";
@@ -28,12 +28,12 @@ function showSuccess(msg) {
   setTimeout(() => formSuccess.textContent = "", 3000);
 }
 
-// Kerää lomakedata objektiksi
+// Collect form data as an object
 function getFormData() {
   return Object.fromEntries(new FormData(form).entries());
 }
 
-// Lähetä uusi lead backendille
+// Send a new lead to the backend
 async function submitLead(data) {
   const res = await fetch("/api/leads", {
     method: "POST",
@@ -48,7 +48,7 @@ async function submitLead(data) {
 }
 
 // =======================
-// Lomakkeen submit
+// Form submit
 // =======================
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -64,9 +64,9 @@ form.addEventListener("submit", async (e) => {
   }
 
   try {
-    await submitLead(data); // Lähetä backendille
-    await load();           // Päivitä taulukko
-    form.reset();           // Tyhjennä lomake
+    await submitLead(data); // Send to backend
+    await load();           // Update the table
+    form.reset();           // Clear form
     showSuccess("Lead added successfully!");
   } catch (err) {
     showError(err.message || "Network error, try again.");
@@ -74,16 +74,16 @@ form.addEventListener("submit", async (e) => {
 });
 
 // =======================
-// Haku ja suodatus
+// Search and filtering
 // =======================
 document.querySelector("#applyFilters").addEventListener("click", load);
 
 // =======================
-// Load ja render
+// Load and render
 // =======================
 async function load() {
-  gridStatus.textContent = "Loading…"; // Näytä lataustila
-  grid.innerHTML = ""; // Tyhjennä taulukko
+  gridStatus.textContent = "Loading…"; // Show download status
+  grid.innerHTML = ""; // Clear table
 
   const params = new URLSearchParams();
   if (q.value) params.set("q", q.value);
@@ -105,9 +105,9 @@ async function load() {
   }
 }
 
-// Renderöi leads taulukkoon
+// Render leads to table
 function renderLeads(leads) {
-  grid.innerHTML = ""; // Tyhjennä taulukko
+  grid.innerHTML = ""; // Clear table
 
   leads.forEach(l => {
     const tr = document.createElement("tr");
@@ -127,10 +127,10 @@ function renderLeads(leads) {
     const tdStatus = document.createElement("td");
     tdStatus.dataset.label = "Status";
 
-    // Lisätään status badge värikoodattuna
+    // Adding a color-coded status badge
     const span = document.createElement("span");
     span.textContent = l.status || "New";
-    span.className = `status ${l.status || "New"}`; // CSS luokka määrää värin
+    span.className = `status ${l.status || "New"}`; // CSS class determines color
     tdStatus.appendChild(span);
 
     const tdNotes = document.createElement("td");
@@ -161,7 +161,7 @@ function renderLeads(leads) {
     grid.appendChild(tr);
   });
 
-  bindActions(); // Liitä napit
+  bindActions();
 }
 
 // =======================
@@ -180,7 +180,9 @@ function bindActions() {
           body: JSON.stringify({ status: b.dataset.s })
         });
       }
-      load(); // Päivitä taulukko, jolloin status badge päivittyy
+
+      load(); // Refresh the table to update the status badge
+      
     });
   });
 }

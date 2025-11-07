@@ -1,6 +1,6 @@
 body {
   font-family: system-ui, "Segoe UI", Arial, sans-serif;
-  background: #e6f2eb; /* vaalea vihreän/maanläheinen sävy */
+  background: #e6f2eb;
   margin: 0;
 }
 
@@ -10,26 +10,28 @@ body {
   padding: 0 16px;
 }
 
-/* Kortit (lomakkeet ja taulukko) */
+/* Vards (forms and table) */
 .card {
   background: #ffffff;
-  border: 1px solid #c7d8ce; /* pehmeä vihertävä reunus */
+  border: 1px solid #c7d8ce;
   border-radius: 12px;
   padding: 14px;
   margin: 12px 0;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05); /* kevyt varjo moderni efekti */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
+
 /* Ensure labels take full width for stacking */
 label{
     display:block;
     margin:8px 0}
-/* Yhtenäinen perusmuotoilu kaikille form-elementeille */
+
+/* Basic formatting for all form elements */
 input, select, textarea, button {
   font: inherit;
   padding: 8px;
-  border: 1px solid #b8d5c5; /* pehmeä vihertävä sävy */
+  border: 1px solid #b8d5c5;
   border-radius: 8px;
-  background: #fdfefc; /* vaalea neutraali tausta */
+  background: #fdfefc;
 }
 /* Create button below textarea with fixed width */
 form#newLead button[type="submit"] {
@@ -40,17 +42,17 @@ form#newLead button[type="submit"] {
   padding: 8px 16px;
   border-radius: 8px;
   cursor: pointer;
-  background-color: #4ca774; /* kiertotalouden vihreä nappi */
+  background-color: #4ca774;
   color: white;
   border: none;
   font-weight: bold;
   transition: background-color 0.2s ease;
 }
 form#newLead button[type="submit"]:hover {
-  background-color: #3d8c5e; /* tummempi vihreä hover */
+  background-color: #3d8c5e;
 }
 
-/* Näppäimistöllä fokusoidessa näkyvä outline */
+/* Keyboard focused outline */
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible,
@@ -76,12 +78,13 @@ table {
 
 th, td {
   padding: 10px;
-  border-top: 1px solid #dbe8dc; /* neutraali vihertävä */
+  border-top: 1px solid #dbe8dc;
 }
 
 thead tr {
-  background: #e3f0e5; /* vaalea vihreä header */
+  background: #e3f0e5;
 }
+
 /* Class to make action buttons look like links */
 button.link,
 button.link:is(:focus-visible) {
@@ -96,21 +99,22 @@ button.link:focus-visible {
   outline: 3px solid #2e3a8c;
   outline-offset: 2px;
 }
+
 /* Status message above the table (Loading / No leads found) */
 #gridStatus {
   font-size: 0.95rem;
   font-style: italic;
-  color: #3a5a40; /* syvempi vihreä/maanläheinen */
+  color: #3a5a40;
   text-align: center;
   margin-bottom: 12px;
   padding: 6px 12px;
-  background-color: #e6f2eb; /* pehmeä vihertävä tausta */
+  background-color: #e6f2eb;
   border-radius: 8px;
   border: 1px solid #c7d8ce;
   transition: opacity 0.3s ease;
 }
 
-/* Esimerkki fade-out käyttöön JS:ssä (optionaalinen) */
+/* Status messega fadeout */
 #gridStatus.fade-out {
   opacity: 0;
 }
@@ -129,16 +133,16 @@ button.link:focus-visible {
 
 /* Status colors */
 .status.New {
-  background-color: #2e3a8c; /* sininen */
+  background-color: #2e3a8c;
 }
 .status.Contacted {
-  background-color: #f39c12; /* oranssi */
+  background-color: #f39c12;
 }
 .status.Qualified {
-  background-color: #27ae60; /* vihreä */
+  background-color: #27ae60;
 }
 .status.Lost {
-  background-color: #c0392b; /* punainen */
+  background-color: #c0392b;
 }
 
 
