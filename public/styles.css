@@ -26,6 +26,16 @@ input, select, textarea, button {
   border: 1px solid #ccd3e0;
   border-radius: 8px;
 }
+/* Create button below textarea with fixed width */
+form#newLead button[type="submit"] {
+    display: block;        /* Omaan riviin */
+    margin: 8px 0 0 0;     /* Tilaa textarea:n yläpuolelle */
+    width: 200px;          /* Kiinteä leveys napille */
+    max-width: 100%;       /* Ei veny liian pienessä näytössä */
+    padding: 8px 16px;     /* Mukava sisäinen täyttö */
+    border-radius: 8px;
+    cursor: pointer;
+}
 
 /* Näppäimistöllä fokusoidessa näkyvä outline */
 input:focus-visible,
