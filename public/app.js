@@ -126,7 +126,12 @@ function renderLeads(leads) {
 
     const tdStatus = document.createElement("td");
     tdStatus.dataset.label = "Status";
-    tdStatus.textContent = l.status || "";
+
+    // Lisätään status badge värikoodattuna
+    const span = document.createElement("span");
+    span.textContent = l.status || "New";
+    span.className = `status ${l.status || "New"}`; // CSS luokka määrää värin
+    tdStatus.appendChild(span);
 
     const tdNotes = document.createElement("td");
     tdNotes.dataset.label = "Notes";
@@ -175,7 +180,7 @@ function bindActions() {
           body: JSON.stringify({ status: b.dataset.s })
         });
       }
-      load(); // Päivitä taulukko
+      load(); // Päivitä taulukko, jolloin status badge päivittyy
     });
   });
 }
@@ -184,4 +189,5 @@ function bindActions() {
 // Initial load
 // =======================
 load();
+
 

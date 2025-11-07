@@ -79,6 +79,51 @@ button.link:focus-visible {
   outline: 3px solid #2e3a8c;
   outline-offset: 2px;
 }
+/* Status message above the table (Loading / No leads found) */
+#gridStatus {
+  font-size: 0.95rem;          /* Hiukan pienempi kuin päätekstin */
+  font-style: italic;           /* Tyylikäs kursiivi */
+  color: #555;                  /* Hillitty harmaa väri */
+  text-align: center;           /* Keskitetty vaakasuunnassa */
+  margin-bottom: 12px;          /* Tilaa taulukon yläpuolelle */
+  padding: 6px 12px;            /* Pieni sisämarginaali */
+  background-color: #f7f9ff;    /* Hieman vaalea tausta, erottuu taulukosta */
+  border-radius: 8px;           /* Pyöristetyt kulmat */
+  border: 1px solid #dde4f0;    /* Hieman rajattu, elegantti tyyli */
+  transition: opacity 0.3s ease; /* Sulava fade-in/out */
+}
+
+/* Esimerkki fade-out käyttöön JS:ssä (optionaalinen) */
+#gridStatus.fade-out {
+  opacity: 0;
+}
+
+/* Status badges */
+.status {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 12px;
+  color: white;
+  font-weight: bold;
+  font-size: 0.85rem;
+  text-align: center;
+  min-width: 70px;
+}
+
+/* Status colors */
+.status.New {
+  background-color: #2e3a8c; /* sininen */
+}
+.status.Contacted {
+  background-color: #f39c12; /* oranssi */
+}
+.status.Qualified {
+  background-color: #27ae60; /* vihreä */
+}
+.status.Lost {
+  background-color: #c0392b; /* punainen */
+}
+
 
 /* Make inputs, selects, textarea and buttons take full width on small screens */
 @media (max-width: 600px) {
