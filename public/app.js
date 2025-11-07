@@ -5,6 +5,8 @@ const q = document.querySelector("#q");           // Search input
 const statusSel = document.querySelector("#status"); // Status
 const formError = document.querySelector("#formError"); // For validation errors
 const formSuccess = document.querySelector("#formSuccess");
+const gridStatus = document.querySelector("#gridStatus");
+
 
 // Apply filters button
 document.querySelector("#applyFilters").addEventListener("click", load);
@@ -50,14 +52,27 @@ form.addEventListener("submit", async (e) => {
 
 // Fetch and display leads
 async function load() {
-  const params = new URLSearchParams();
-  if (q.value) params.set("q", q.value);
-  if (statusSel.value) params.set("status", statusSel.value);
+    gridStatus.textContent = "Loading…"; // Näytä lataustila
+    grid.innerHTML = ""; // Tyhjennä vanha sisältö
 
-  const res = await fetch("/api/leads?" + params.toString());
-  const leads = await res.json();
+    const params = new URLSearchParams();
+    if (q.value) params.set("q", q.value);
+    if (statusSel.value) params.set("status", statusSel.value);
 
-  renderLeads(leads);
+  try {
+    const res = await fetch("/api/leads?" + params.toString());
+    const leads = await res.json();
+
+    if (leads.length === 0) {
+      gridStatus.textContent = "No leads found.";
+    } else {
+      gridStatus.textContent = ""; // Tyhjennä status jos on dataa
+    }
+
+    renderLeads(leads);
+  } catch (err) {
+    gridStatus.textContent = "Failed to load leads.";
+  }
 }
 
 // Render leads using DOM-API (safe)
