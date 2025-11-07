@@ -1,20 +1,24 @@
+body {
+  font-family: system-ui, "Segoe UI", Arial, sans-serif;
+  background: #e6f2eb; /* vaalea vihreän/maanläheinen sävy */
+  margin: 0;
+}
 
-/* Basic body styling */
-body{
-    font-family:system-ui,Segoe UI,Arial,sans-serif;
-    background:#f4f7fb;
-    margin:0}
-/* Centred content wrapper */
-.wrap{max-width:980px;
-    margin:20px auto;
-    padding:0 16px}
-/* Card style for main sections */
-.card{
-    background:#fff;
-    border:1px solid #e6e9f0;
-    border-radius:12px;
-    padding:14px;
-    margin:12px 0}
+.wrap {
+  max-width: 980px;
+  margin: 20px auto;
+  padding: 0 16px;
+}
+
+/* Kortit (lomakkeet ja taulukko) */
+.card {
+  background: #ffffff;
+  border: 1px solid #c7d8ce; /* pehmeä vihertävä reunus */
+  border-radius: 12px;
+  padding: 14px;
+  margin: 12px 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05); /* kevyt varjo moderni efekti */
+}
 /* Ensure labels take full width for stacking */
 label{
     display:block;
@@ -23,18 +27,27 @@ label{
 input, select, textarea, button {
   font: inherit;
   padding: 8px;
-  border: 1px solid #ccd3e0;
+  border: 1px solid #b8d5c5; /* pehmeä vihertävä sävy */
   border-radius: 8px;
+  background: #fdfefc; /* vaalea neutraali tausta */
 }
 /* Create button below textarea with fixed width */
 form#newLead button[type="submit"] {
-    display: block;        /* Omaan riviin */
-    margin: 8px 0 0 0;     /* Tilaa textarea:n yläpuolelle */
-    width: 200px;          /* Kiinteä leveys napille */
-    max-width: 100%;       /* Ei veny liian pienessä näytössä */
-    padding: 8px 16px;     /* Mukava sisäinen täyttö */
-    border-radius: 8px;
-    cursor: pointer;
+  display: block;
+  margin: 8px 0 0 0;
+  width: 200px;
+  max-width: 100%;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #4ca774; /* kiertotalouden vihreä nappi */
+  color: white;
+  border: none;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+form#newLead button[type="submit"]:hover {
+  background-color: #3d8c5e; /* tummempi vihreä hover */
 }
 
 /* Näppäimistöllä fokusoidessa näkyvä outline */
@@ -47,24 +60,28 @@ button:focus-visible {
 
 }
 /* Use flexbox for the filter controls */
-.filters{
-    display:flex;
-    gap:8px;
-    flex-wrap:wrap;
-    align-items:center;
-    margin:8px 0}
+.filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 8px 0;
+}
 /* Table styling */
-table{
-    width:100%;
-    border-collapse:separate;
-    border-spacing:0}
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
 
-th,td{
-    padding:10px;
-    border-top:1px solid #eef1f6}
+th, td {
+  padding: 10px;
+  border-top: 1px solid #dbe8dc; /* neutraali vihertävä */
+}
 
-thead tr{
-    background:#f7f9ff}
+thead tr {
+  background: #e3f0e5; /* vaalea vihreä header */
+}
 /* Class to make action buttons look like links */
 button.link,
 button.link:is(:focus-visible) {
@@ -81,16 +98,16 @@ button.link:focus-visible {
 }
 /* Status message above the table (Loading / No leads found) */
 #gridStatus {
-  font-size: 0.95rem;          /* Hiukan pienempi kuin päätekstin */
-  font-style: italic;           /* Tyylikäs kursiivi */
-  color: #555;                  /* Hillitty harmaa väri */
-  text-align: center;           /* Keskitetty vaakasuunnassa */
-  margin-bottom: 12px;          /* Tilaa taulukon yläpuolelle */
-  padding: 6px 12px;            /* Pieni sisämarginaali */
-  background-color: #f7f9ff;    /* Hieman vaalea tausta, erottuu taulukosta */
-  border-radius: 8px;           /* Pyöristetyt kulmat */
-  border: 1px solid #dde4f0;    /* Hieman rajattu, elegantti tyyli */
-  transition: opacity 0.3s ease; /* Sulava fade-in/out */
+  font-size: 0.95rem;
+  font-style: italic;
+  color: #3a5a40; /* syvempi vihreä/maanläheinen */
+  text-align: center;
+  margin-bottom: 12px;
+  padding: 6px 12px;
+  background-color: #e6f2eb; /* pehmeä vihertävä tausta */
+  border-radius: 8px;
+  border: 1px solid #c7d8ce;
+  transition: opacity 0.3s ease;
 }
 
 /* Esimerkki fade-out käyttöön JS:ssä (optionaalinen) */
