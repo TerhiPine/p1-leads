@@ -4,6 +4,7 @@ const form = document.querySelector("#newLead");   // 'Add lead' form
 const q = document.querySelector("#q");           // Search input
 const statusSel = document.querySelector("#status"); // Status
 const formError = document.querySelector("#formError"); // For validation errors
+const formSuccess = document.querySelector("#formSuccess");
 
 // Apply filters button
 document.querySelector("#applyFilters").addEventListener("click", load);
@@ -12,6 +13,7 @@ document.querySelector("#applyFilters").addEventListener("click", load);
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
   formError.textContent = ""; // Clear previous errors
+  formSuccess.textContent = "";
 
   const data = Object.fromEntries(new FormData(form).entries());
 
@@ -36,6 +38,10 @@ form.addEventListener("submit", async (e) => {
 
     await load(); 
     form.reset(); 
+
+        // Näytä onnistumisviesti
+    formSuccess.textContent = "Lead added successfully!";
+    setTimeout(() => formSuccess.textContent = "", 3000);
   } 
   catch (error) {
     formError.textContent = "Network error, try again.";
