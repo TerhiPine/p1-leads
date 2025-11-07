@@ -103,6 +103,18 @@ app.patch("/api/leads/:id", async (req, res) => {
   res.json(leads[idx]);
 });
 
+app.delete("/api/leads/:id", async (req, res) => {
+  const leads = await readLeadsAsync(); // async read
+  const idx = leads.findIndex(l => l.id === req.params.id);
+  if (idx === -1) return res.status(404).json({ error: "Not found" });
+
+  const deletedLead = leads.splice(idx, 1)[0]; // Poistetaan lead
+  await writeLeadsAsync(leads);               // async write
+  res.json({ message: "Lead deleted", lead: deletedLead });
+});
+
+
+
 
 // --- 6. Root Route ---
 // Handle GET requests to the root URL (e.g., http://localhost:3000/)

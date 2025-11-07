@@ -13,7 +13,6 @@ form.addEventListener("submit", async (e) => {
   e.preventDefault();
   formError.textContent = ""; // Clear previous errors
 
-
   const data = Object.fromEntries(new FormData(form).entries());
 
   // Client-side validation
@@ -34,11 +33,10 @@ form.addEventListener("submit", async (e) => {
       formError.textContent = err.error || "Validation failed";
       return;
     }
+
     await load(); 
     form.reset(); 
-    
   } 
-  
   catch (error) {
     formError.textContent = "Network error, try again.";
   }
@@ -82,6 +80,7 @@ function renderLeads(leads) {
     const tdActions = document.createElement("td");
     tdActions.dataset.label = "Actions";
 
+    // Status buttons
     ["Contacted", "Qualified", "Lost"].forEach(s => {
       const btn = document.createElement("button");
       btn.className = "link";
@@ -92,6 +91,14 @@ function renderLeads(leads) {
       tdActions.appendChild(btn);
     });
 
+    // Delete button
+    const delBtn = document.createElement("button");
+    delBtn.className = "link delete";
+    delBtn.type = "button";
+    delBtn.dataset.id = l.id;
+    delBtn.textContent = "Delete";
+    tdActions.appendChild(delBtn);
+
     tr.append(tdName, tdEmail, tdCompany, tdStatus, tdActions);
     grid.appendChild(tr);
   });
@@ -99,16 +106,25 @@ function renderLeads(leads) {
   bindActions(); // Attach click listeners to buttons
 }
 
-// Attach click listeners to action buttons
+// Attach click listeners to action buttons (status + delete)
 function bindActions() {
   document.querySelectorAll("#grid button.link").forEach(b => {
     b.addEventListener("click", async () => {
-      await fetch("/api/leads/" + b.dataset.id, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ status: b.dataset.s })
-      });
-      load(); // Refresh table after status change
+      if (b.classList.contains("delete")) {
+        // Confirm deletion
+        if (!confirm("Are you sure you want to delete this lead?")) return;
+        await fetch("/api/leads/" + b.dataset.id, {
+          method: "DELETE"
+        });
+      } else {
+        // Update status
+        await fetch("/api/leads/" + b.dataset.id, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ status: b.dataset.s })
+        });
+      }
+      load(); // Refresh table after action
     });
   });
 }
