@@ -56,31 +56,40 @@ async function load() {
 
 // Render leads using DOM-API (safe)
 function renderLeads(leads) {
-  grid.innerHTML = ""; // Clear table
+  grid.innerHTML = ""; // Tyhjennetään taulukko
 
   leads.forEach(l => {
     const tr = document.createElement("tr");
 
+    // Name
     const tdName = document.createElement("td");
     tdName.dataset.label = "Name";
     tdName.textContent = l.name || "";
 
+    // Email
     const tdEmail = document.createElement("td");
     tdEmail.dataset.label = "Email";
     tdEmail.textContent = l.email || "";
 
+    // Company
     const tdCompany = document.createElement("td");
     tdCompany.dataset.label = "Company";
     tdCompany.textContent = l.company || "";
 
+    // Status
     const tdStatus = document.createElement("td");
     tdStatus.dataset.label = "Status";
     tdStatus.textContent = l.status || "";
 
+    // Notes
+    const tdNotes = document.createElement("td");
+    tdNotes.dataset.label = "Notes";
+    tdNotes.textContent = l.notes || "";
+
+    // Action buttons
     const tdActions = document.createElement("td");
     tdActions.dataset.label = "Actions";
 
-    // Status buttons
     ["Contacted", "Qualified", "Lost"].forEach(s => {
       const btn = document.createElement("button");
       btn.className = "link";
@@ -91,7 +100,6 @@ function renderLeads(leads) {
       tdActions.appendChild(btn);
     });
 
-    // Delete button
     const delBtn = document.createElement("button");
     delBtn.className = "link delete";
     delBtn.type = "button";
@@ -99,11 +107,12 @@ function renderLeads(leads) {
     delBtn.textContent = "Delete";
     tdActions.appendChild(delBtn);
 
-    tr.append(tdName, tdEmail, tdCompany, tdStatus, tdActions);
+    // Liitetään kaikki solut riviin
+    tr.append(tdName, tdEmail, tdCompany, tdStatus, tdNotes, tdActions);
     grid.appendChild(tr);
   });
 
-  bindActions(); // Attach click listeners to buttons
+  bindActions(); // Liitetään event listenerit action-napeille
 }
 
 // Attach click listeners to action buttons (status + delete)

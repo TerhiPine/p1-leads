@@ -20,16 +20,6 @@
     "createdAt": "2025-11-06T20:55:21.861Z"
   },
   {
-    "id": "1762463378513",
-    "name": "Niina",
-    "email": "niinat@ninataroy.fi",
-    "company": "Ninatar Oy",
-    "source": "",
-    "notes": "",
-    "status": "Contacted",
-    "createdAt": "2025-11-06T21:09:38.513Z"
-  },
-  {
     "id": "1762464201390",
     "name": "<script>alert('XSS')</script>",
     "email": "hacked@you.now",
@@ -38,5 +28,15 @@
     "notes": "",
     "status": "New",
     "createdAt": "2025-11-06T21:23:21.390Z"
+  },
+  {
+    "id": "1762503077068",
+    "name": "Keijo K.",
+    "email": "keijok@kojootti.net",
+    "company": "Kojootti",
+    "source": "inner",
+    "notes": "yrityskauppa",
+    "status": "New",
+    "createdAt": "2025-11-07T08:11:17.068Z"
   }
 ]
