@@ -1,6 +1,7 @@
 {
   "name": "p1-leads",
   "version": "1.0.0",
+  "description": "Micro CRM Leads - coursework server and UI",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,7 +11,11 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+
+  "engines": {
+    "node": ">=18"
+  },
+  
   "dependencies": {
     "express": "^5.1.0"
   }

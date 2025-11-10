@@ -14,12 +14,11 @@ body {
 }
 
 .leads-list {
-  max-height: 400px;       /* korkeus johon scroll alkaa */
-  overflow-y: auto;        /* pystyscroll */
+  max-height: 400px;
+  overflow-y: auto;
   border: 1px solid #eef1f6;
   border-radius: 8px;
   padding: 4px;
-  -webkit-overflow-scrolling: touch; /* smooth scroll mobiilissa */
 }
 
 
