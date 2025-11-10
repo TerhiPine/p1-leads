@@ -66,7 +66,77 @@
     "company": "Jokusen Kone",
     "source": "Facebook AD",
     "notes": "",
-    "status": "New",
+    "status": "Lost",
     "createdAt": "2025-11-10T13:21:55.209Z"
+  },
+  {
+    "id": "1762794400475",
+    "name": "Mikkonen M",
+    "email": "mikkonen.m@gmail.com",
+    "company": "Mikkosen Mono",
+    "source": "",
+    "notes": "",
+    "status": "New",
+    "createdAt": "2025-11-10T17:06:40.475Z"
+  },
+  {
+    "id": "1762795166330",
+    "name": "Ninni Markkanen",
+    "email": "markkanen@gmail.com",
+    "company": "Socks Co.",
+    "source": "FB AD",
+    "notes": "",
+    "status": "Contacted",
+    "createdAt": "2025-11-10T17:19:26.330Z"
+  },
+  {
+    "id": "1762795416913",
+    "name": "Tero Vieriö",
+    "email": "tero.v@netti.net",
+    "company": "Vierivät Kivet",
+    "source": "",
+    "notes": "",
+    "status": "New",
+    "createdAt": "2025-11-10T17:23:36.913Z"
+  },
+  {
+    "id": "1762797013627",
+    "name": "Mika Jussila",
+    "email": "jussila.m@gmail.com",
+    "company": "Jussisen Kone",
+    "source": "",
+    "notes": "",
+    "status": "New",
+    "createdAt": "2025-11-10T17:50:13.628Z"
+  },
+  {
+    "id": "1762797082686",
+    "name": "Timo Kinnunen",
+    "email": "kinnunen@gmal.net",
+    "company": "Kinnusen Keppi",
+    "source": "",
+    "notes": "",
+    "status": "New",
+    "createdAt": "2025-11-10T17:51:22.686Z"
+  },
+  {
+    "id": "1762797203494",
+    "name": "Leila Leinonen",
+    "email": "leinonen@leipa.net",
+    "company": "Leipä Net",
+    "source": "",
+    "notes": "",
+    "status": "New",
+    "createdAt": "2025-11-10T17:53:23.494Z"
+  },
+  {
+    "id": "1762797262754",
+    "name": "Mika Mikkonen",
+    "email": "mikkonen@netti.net",
+    "company": "Mine Oy",
+    "source": "",
+    "notes": "",
+    "status": "New",
+    "createdAt": "2025-11-10T17:54:22.754Z"
   }
 ]
