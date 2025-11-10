@@ -35,7 +35,7 @@ Built with **HTML, CSS, JavaScript, and Node.js/Express**, this project allows u
 ## Installation
 
 ```bash
-git clone <https://github.com/TerhiPine/p1-leads>
+git clone <https://github.com/TerhiPine/p1-leads.git>
 cd p1-leads
 npm install
-npm start
+node server.js
