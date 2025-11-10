@@ -1,26 +1,26 @@
 // =======================
 // Elements
 // =======================
-const grid = document.querySelector("#grid tbody");       // Table body
+const grid = document.querySelector("#grid tbody");       // Table
 const form = document.querySelector("#newLead");          // Form
 const q = document.querySelector("#q");                   // Search field
 const statusSel = document.querySelector("#status");      // Status-select
 const formError = document.querySelector("#formError");   // Error messages
-const formSuccess = document.querySelector("#formSuccess"); // Success messages
+const formSuccess = document.querySelector("#formSuccess"); // Success message
 const gridStatus = document.querySelector("#gridStatus"); // Loading / empty message
 
 // =======================
 // Functions
 // =======================
 
-// Displays an error message
+// Display an error message
 function showError(msg) {
   formError.textContent = msg;
   formError.style.color = "red";
   formSuccess.textContent = "";
 }
 
-// Displays a success message
+// Display a success message
 function showSuccess(msg) {
   formSuccess.textContent = msg;
   formSuccess.style.color = "green";
@@ -62,7 +62,7 @@ form.addEventListener("submit", async (e) => {
     showError("Name and email are required.");
     return;
   }
-  
+
     // email basic format validation: must contain '@'
   if (!data.email.includes("@")) {
     showError("Email is invalid. Must contain '@'.");
@@ -80,7 +80,7 @@ form.addEventListener("submit", async (e) => {
 });
 
 // =======================
-// Search and filtering
+// Search and filtering - add eventlistener
 // =======================
 document.querySelector("#applyFilters").addEventListener("click", load);
 
