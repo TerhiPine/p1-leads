@@ -62,6 +62,12 @@ form.addEventListener("submit", async (e) => {
     showError("Name and email are required.");
     return;
   }
+  
+    // email basic format validation: must contain '@'
+  if (!data.email.includes("@")) {
+    showError("Email is invalid. Must contain '@'.");
+    return;
+  }
 
   try {
     await submitLead(data); // Send to backend
