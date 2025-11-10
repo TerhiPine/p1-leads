@@ -34,19 +34,8 @@ Built with **HTML, CSS, JavaScript, and Node.js/Express**, this project allows u
 
 ## Installation
 
-1. Clone the repository:
-
 ```bash
-git clone [<repository-url>](https://github.com/TerhiPine/p1-leads)
+git clone <https://github.com/TerhiPine/p1-leads>
 cd p1-leads
-
-2. Install dependencies:
-
 npm install
-
-3. Start the server:
 npm start
-
-4. Open your browser and navigate to:
-
-http://localhost:3000
