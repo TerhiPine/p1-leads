@@ -63,7 +63,7 @@ form.addEventListener("submit", async (e) => {
     return;
   }
 
-    // email basic format validation: must contain '@'
+    // email basic format validation
   if (!data.email.includes("@")) {
     showError("Email is invalid. Must contain '@'.");
     return;
@@ -175,7 +175,7 @@ function renderLeads(leads) {
     grid.appendChild(tr);
   });
 
-  // ✅ Näitä ei pidä kutsua globaalisti — vaan vasta, kun rivit ovat olemassa
+  //
   bindActions();
   bindNotesEdit();
 }
