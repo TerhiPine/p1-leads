@@ -3,9 +3,20 @@
 A lightweight, browser-based CRM for managing leads. 
 Built with **HTML, CSS, JavaScript, and Node.js/Express**, this project allows users to add, view, update, and delete leads with a clean, responsive interface.
 
-# Live Deployment
+## Live Deployment
 
 Live: https://micro-crm-leads.onrender.com/
+
+## Video
+
+[Link revealed later]
+
+00:00 Introduction
+00:11 Code: Features and architecture
+00:43: Code: Frontend
+01:08 Reflection and next steps
+01:48 Code preview
+02:26: Demo
 
 ## Prerequisites
 
