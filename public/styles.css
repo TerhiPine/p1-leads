@@ -32,7 +32,7 @@ body {
   box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
 
-/* Ensure labels take full width for stacking */
+/* Full width for stacking */
 label{
     display:block;
     margin:8px 0}
@@ -45,24 +45,34 @@ input, select, textarea, button {
   border-radius: 8px;
   background: #fdfefc;
 }
-/* Create button below textarea with fixed width */
-form#newLead button[type="submit"] {
-  display: block;
-  margin: 8px 0 0 0;
-  width: 200px;
-  max-width: 100%;
-  padding: 8px 16px;
-  border-radius: 8px;
-  cursor: pointer;
+
+/* Button style (not .link-buttons) */
+button:not(.link) {
   background-color: #4ca774;
   color: white;
   border: none;
-  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
   transition: background-color 0.2s ease;
+  width: 200px;
+  max-width: 100%;
 }
-form#newLead button[type="submit"]:hover {
+
+/* Hover for buttons, not .link.buttons */
+button:not(.link):hover {
   background-color: #3d8c5e;
 }
+
+/* Create-button */
+form#newLead button[type="submit"] {
+  display: block;
+  margin-top: 8px;
+  width: 200px;
+  max-width: 100%;
+}
+
 
 /* Keyboard focused outline */
 input:focus-visible,
@@ -73,7 +83,7 @@ button:focus-visible {
   outline-offset: 2px;
 
 }
-/* Use flexbox for the filter controls */
+/* Flexbox for the filter controls */
 .filters {
   flex: 1 1 160px;
   gap: 8px;
@@ -81,6 +91,7 @@ button:focus-visible {
   align-items: center;
   margin: 8px 0;
 }
+
 /* Table styling */
 table {
   width: 100%;
@@ -97,7 +108,7 @@ thead tr {
   background: #e3f0e5;
 }
 
-/* Class to make action buttons look like links */
+/* Class to make action buttons (new, contacted...) look like links */
 button.link,
 button.link:is(:focus-visible) {
   background: transparent;
@@ -114,7 +125,7 @@ button.link:focus-visible {
 
 /* Status message above the table (Loading / No leads found) */
 #gridStatus {
-  font-size: 0.95rem;
+  font-size: 15px;
   font-style: italic;
   color: #3a5a40;
   text-align: center;
@@ -138,7 +149,7 @@ button.link:focus-visible {
   border-radius: 12px;
   color: white;
   font-weight: bold;
-  font-size: 0.85rem;
+  font-size: 13px;
   text-align: center;
   min-width: 70px;
 }
@@ -157,8 +168,50 @@ button.link:focus-visible {
   background-color: #c0392b;
 }
 
+/* Note styling*/
+.notes-edit {
+  resize: vertical;
+  min-height: 32px;
+  font: inherit;
+  border: 1px solid #ccd3e0;
+  border-radius: 8px;
+  padding: 6px 8px;
+  background: #fafbff;
+}
 
-/* Make inputs, selects, textarea and buttons take full width on small screens */
+td[data-label="Notes"] {
+  vertical-align: middle;
+  min-width: 180px;
+}
+
+/* Status */
+.status {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 13px;
+  color: #fff;
+  text-align: center;
+}
+.status.New { background: #6b7280; }
+.status.Contacted { background: #3b82f6; }
+.status.Qualified { background: #22c55e; }
+.status.Lost { background: #ef4444; }
+
+/* Actions column */
+td[data-label="Actions"] {
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+td[data-label="Actions"] button.link {
+  display: block;
+  margin-bottom: 4px;
+  padding: 0;
+}
+
+/*  Responsive for small screens */
 @media (max-width: 600px) {
   input, select, textarea, button {
     width: 100%;
@@ -205,7 +258,24 @@ button.link:focus-visible {
     justify-content: flex-start;
     gap: 8px;
   }
-    .wrap {
+
+  /* Note textarea and status-badge */
+  .notes-edit {
+    width: 100%;
+    font-size: 15px;
+  }
+
+  .status {
+    margin-bottom: 4px;
+    display: inline-block;
+  }
+
+  td[data-label="Actions"] button.link {
+    display: inline-block;
+    margin-right: 8px;
+  }
+
+  .wrap {
     padding: 0 8px;
   }
 
@@ -214,6 +284,6 @@ button.link:focus-visible {
   }
 
   h1, h2 {
-    font-size: 1.2rem;
+    font-size: 19px;
   }
 }
