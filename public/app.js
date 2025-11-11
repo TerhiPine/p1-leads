@@ -133,16 +133,24 @@ function renderLeads(leads) {
     const tdStatus = document.createElement("td");
     tdStatus.dataset.label = "Status";
 
-    // Adding a color-coded status badge
     const span = document.createElement("span");
     span.textContent = l.status || "New";
-    span.className = `status ${l.status || "New"}`; // CSS class determines color
+    span.className = `status ${l.status || "New"}`;
     tdStatus.appendChild(span);
 
+    // Notes
     const tdNotes = document.createElement("td");
     tdNotes.dataset.label = "Notes";
-    tdNotes.textContent = l.notes || "";
 
+    const notesInput = document.createElement("textarea");
+    notesInput.value = l.notes || "";
+    notesInput.dataset.id = l.id;
+    notesInput.className = "notes-edit";
+    notesInput.rows = 2;
+    notesInput.style.width = "100%";
+    tdNotes.appendChild(notesInput);
+
+    // Actions
     const tdActions = document.createElement("td");
     tdActions.dataset.label = "Actions";
 
@@ -167,7 +175,9 @@ function renderLeads(leads) {
     grid.appendChild(tr);
   });
 
+  // ✅ Näitä ei pidä kutsua globaalisti — vaan vasta, kun rivit ovat olemassa
   bindActions();
+  bindNotesEdit();
 }
 
 // =======================
@@ -186,9 +196,24 @@ function bindActions() {
           body: JSON.stringify({ status: b.dataset.s })
         });
       }
+      
 
       load(); // Refresh the table to update the status badge
       
+    });
+  });
+}
+function bindNotesEdit() {
+  document.querySelectorAll(".notes-edit").forEach(area => {
+    area.addEventListener("change", async () => {
+      const id = area.dataset.id;
+      const newNotes = area.value;
+
+      await fetch("/api/leads/" + id, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ notes: newNotes })
+      });
     });
   });
 }
