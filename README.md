@@ -51,12 +51,20 @@ node server.js
 
 ## Improvements & Learning
 
-- More advanced email validation (regex), backend development with user management (login).
+- Application improvements: More advanced email validation (regex), backend development with user management (login). Better error-handling and better responsiveness (UX). 
 
-- Project was an great opportunity to deepen my understanding of full-stack web development, particularly in building a small-scale CRM system from scratch. 
+- Project was an great opportunity to deepen my understanding of full-stack web development, building a small-scale CRM system from scratch was really great opportunity to see what I can already do. 
 
-- Frontend; I deepened my core `HTML`, `CSS`, and `JavaScript` skills. I stepped into DOM manipulation, event handling, making eventlisteners and form validations. Adding responsive design and dynamic status badges strengthened made nice addition to delivering better user experiene. 
+- Frontend; I deepened my basic `HTML`, `CSS`, and `JavaScript` skills. I learned more about DOM manipulation, event handling, making eventlisteners and form validations. Adding responsive design and dynamic status badges made nice addition to delivering better user experience. 
 
-- Backend: I practiced building a lightweight RESTful API with `Node.js` and `Express`. Reading and writing  JSON files in safe way gave me hands-on experience in asynchronous file handling, error checking, and simple data manipulation. I also implemented standard CRUD operations—Create, Read, Update, Delete—allowing leads to be added, updated, or removed while ensuring proper error handling.
+- Backend: I practiced building a lightweight application with `Node.js` and `Express`. Reading and writing  JSON files in safe way gave me hands-on experience in asynchronous file handling, error checking, and simple data manipulation. I also implemented standard CRUD operations—Create, Read, Update, Delete—allowing leads to be added, updated, or removed while ensuring proper error handling. User can also modify notes later.
 
-- Integrating the frontend with the backend reinforced concepts of asynchronous communication with fetch requests, handling promises, and updating the UI dynamically based on server responses. I also became more aware of security and usability concerns, including input sanitization, basic email validation, and consistent state management. Overall, this project consolidated my skills in combining frontend and backend development, creating an interactive and functional web application that could serve as a foundation for more advanced CRM features in the future.
+- Integrating the frontend with the backend reinforced concepts of asynchronous communication with fetch requests, handling promises, and updating the UI dynamically based on server responses. I also became more aware of security and usability concerns, including input sanitization, basic email validation, and consistent state management. Overall, this project deepened my skills in combining frontend and backend development, creating an interactive and functional web application that could serve as a foundation for more advanced application later on.
+
+- While making video and self reflection, I see easily things to make better or cleaner code-wise. I think that tells story how this project taught me and is still teaching and I will keep learning. 
+
+## Rubric for grading
+
+- I see that I got all needed features implemented to project for 20pts.
+- Core functionality, Code quality & architecture: Application works as its meant to, code is structured and commented that way, that outsider will understand what is gong on. Frontend is separated from backend, which makes managing files and core easier.
+-  UX, Accessibility & Data Handling: Error/success messaging, responsive layout (mobile first), `aria-live` for screen readers. Frontend uses `fetch` + JSON, validation in the both ends - on the user and server. `readLeadsAsync` and `writeLeadsAsync` are safe way to handle inputs.
