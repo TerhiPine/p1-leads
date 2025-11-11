@@ -12,10 +12,15 @@ Live: https://micro-crm-leads.onrender.com/
 [Link revealed later]
 
 00:00 Introduction
+
 00:11 Code: Features and architecture
+
 00:43: Code: Frontend
+
 01:08 Reflection and next steps
+
 01:48 Code preview
+
 02:26: Demo
 
 ## Prerequisites
