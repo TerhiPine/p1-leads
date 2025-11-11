@@ -137,7 +137,7 @@ button.link:focus-visible {
   transition: opacity 0.3s ease;
 }
 
-/* Status messega fadeout */
+/* Status message fadeout */
 #gridStatus.fade-out {
   opacity: 0;
 }
