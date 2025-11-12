@@ -9,7 +9,7 @@ Live: https://micro-crm-leads.onrender.com/
 
 ## Video
 
-[Link revealed later]
+https://youtu.be/R2VKRpCR2IU
 
 00:00 Introduction
 
