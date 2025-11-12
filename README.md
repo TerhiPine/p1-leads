@@ -1,5 +1,8 @@
 # Micro CRM Leads
 
+<img width="1920" height="385" alt="Screenshot (399)" src="https://github.com/user-attachments/assets/4725c6b2-26af-4ef3-acd1-6e20a7af8958" />
+
+
 A lightweight, browser-based CRM for managing leads. 
 Built with **HTML, CSS, JavaScript, and Node.js/Express**, this project allows users to add, view, update, and delete leads with a clean, responsive interface.
 
@@ -9,18 +12,19 @@ Live: https://micro-crm-leads.onrender.com/
 
 ## Video
 
-[Link revealed later]
+https://youtu.be/R2VKRpCR2IU
 
 00:00 Introduction
+
 00:11 Code: Features and architecture
+
 00:43: Code: Frontend
+
 01:08 Reflection and next steps
+
 01:48 Code preview
+
 02:26: Demo
-
-## Prerequisites
-
-You must have Node.js (version 18 or later) installed.
 
 ## Core Functionality
 
@@ -50,21 +54,26 @@ You must have Node.js (version 18 or later) installed.
 - Dynamic content is sanitized to prevent XSS.  
 
 ---
+## Prerequisites
 
-## Installation
+You must have Node.js (version 18 or later) and Git installed.
+
+## Installation Win & macOS
 
 ```bash
-git clone <https://github.com/TerhiPine/p1-leads.git>
+git clone https://github.com/TerhiPine/p1-leads.git
 cd p1-leads
 npm install
 node server.js
 ```
 
+Then open your browser and go to http://localhost:3000
+
 ## Improvements & Learning
 
-- Application improvements: More advanced email validation (regex), backend development with user management (login). Better error-handling and better responsiveness (UX). 
+- Application improvements for future: More advanced email validation (regex), backend development with user management (login). Better error-handling and better responsiveness (UX). 
 
-- Project was an great opportunity to deepen my understanding of full-stack web development, building a small-scale CRM system from scratch was really great opportunity to see what I can already do. 
+- Project was an great opportunity to deepen my understanding of fullstack web development, building a small-scale CRM system from scratch was really great opportunity to see what I can already do. 
 
 - Frontend; I deepened my basic `HTML`, `CSS`, and `JavaScript` skills. I learned more about DOM manipulation, event handling, making eventlisteners and form validations. Adding responsive design and dynamic status badges made nice addition to delivering better user experience. 
 
@@ -76,6 +85,6 @@ node server.js
 
 ## Rubric for grading
 
-- I see that I got all needed features implemented to project for 20pts.
-- Core functionality, Code quality & architecture: Application works as its meant to, code is structured and commented that way, that outsider will understand what is gong on. Frontend is separated from backend, which makes managing files and core easier.
--  UX, Accessibility & Data Handling: Error/success messaging, responsive layout (mobile first), `aria-live` for screen readers. Frontend uses `fetch` + JSON, validation in the both ends - on the user and server. `readLeadsAsync` and `writeLeadsAsync` are safe way to handle inputs.
+- I see that I got all needed features implemented to project for full grade.
+- Core functionality, Code quality & architecture: Application works as its meant to, code is structured and commented that way, that outsider will understand what is gong on. Frontend is separated from backend, which makes managing files and code easier.
+-  UX, Accessibility & Data Handling: Error/success messaging, responsive layout (mobile first), `aria-live` for screen readers. Frontend uses `fetch` + JSON, validation in the both ends - on the user and server. `readLeadsAsync` and `writeLeadsAsync` are safe way to handle data.
