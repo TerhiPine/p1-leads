@@ -46,6 +46,9 @@ https://youtu.be/R2VKRpCR2IU
 ---
 ## UX & Accessibility
 
+<img width="606" height="156" alt="image" src="https://github.com/user-attachments/assets/1ce4e51d-377b-4ee4-bb76-e8c94f402bbd" />
+
+
 - Keyboard-accessible forms and buttons.  
 - Focus outlines visible for all interactive elements.  
 - Status badges color-coded (New, Contacted, Qualified, Lost).  
