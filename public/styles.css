@@ -127,13 +127,13 @@ button.link:focus-visible {
 #gridStatus {
   font-size: 15px;
   font-style: italic;
-  color: #3a5a40;
+  color: #2c3e2b;
   text-align: center;
   margin-bottom: 12px;
   padding: 6px 12px;
-  background-color: #e6f2eb;
+  background-color: #dff0e5;
   border-radius: 8px;
-  border: 1px solid #c7d8ce;
+  border: 1px solid #bcd3c0;
   transition: opacity 0.3s ease;
 }
 
@@ -159,13 +159,13 @@ button.link:focus-visible {
   background-color: #2e3a8c;
 }
 .status.Contacted {
-  background-color: #f39c12;
+  background-color: #b86b00
 }
 .status.Qualified {
-  background-color: #27ae60;
+  background-color: #1b7a46;
 }
 .status.Lost {
-  background-color: #c0392b;
+  background-color: #8b0000;
 }
 
 /* Note styling*/

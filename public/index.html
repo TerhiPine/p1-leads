@@ -1,48 +1,50 @@
-
 <!doctype html>
-<html>
+<html lang="fi">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Micro CRM Leads</title>
-  <link rel="stylesheet" href="styles.css"> <!-- Link to the stylesheet -->
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <main class="wrap">
+  <main class="wrap" role="main">
     <h1>Micro CRM Leads</h1>
-    <!-- Form for creating a new lead. 'id' is for JS, 'class' is for CSS. -->
-    <form id="newLead" class="card" novalidate>
-      <h2>Add lead</h2>
-      <!-- Error messages, first for screenreader, second for default user. -->
-      <div id="formError" aria-live="polite" style="color:red; margin-bottom:8px;"></div>
-      <div id="formError" role="alert" style="color:#b00020; margin-bottom:8px;"></div>
-      <div id="formSuccess" style="color:green; margin-bottom:8px;"></div>
 
+    <!-- Form for creating a new lead -->
+    <form id="newLead" class="card" aria-labelledby="addLeadTitle" novalidate>
+      <h2 id="addLeadTitle">Add lead</h2>
+
+      <!-- Error and success messages -->
+      <div id="formError" aria-live="polite" role="alert" style="color:#b00020; margin-bottom:8px;"></div>
+      <div id="formSuccess" role="status" style="color:green; margin-bottom:8px;"></div>
 
       <label for="name">Name</label>
-      <input id="name" name="name" required placeholder="Lead's name"/>
+      <input id="name" name="name" required placeholder="Lead's name" autocomplete="name" />
 
       <label for="email">Email</label>
-      <input id="email" name="email" type="email" required placeholder="email@address.com"/>
+      <input id="email" name="email" type="email" required placeholder="email@address.com" autocomplete="email" />
 
       <label for="company">Company</label>
-      <input id="company" name="company" placeholder="Company or team name"/>
+      <input id="company" name="company" placeholder="Company or team name" autocomplete="organization" />
 
       <label for="source">Source</label>
-      <input id="source" name="source" />
+      <input id="source" name="source" placeholder="e.g., Website form" />
 
       <label for="notes">Notes</label>
-      <textarea id="notes" name="notes"></textarea>
+      <textarea id="notes" name="notes" rows="3" placeholder="Add any relevant notes here"></textarea>
 
-    <button type="submit">Create</button>
+      <button type="submit">Create</button>
     </form>
 
-    
     <!-- Section for displaying and filtering leads -->
-    <section class="card">
-      <h2>Leads</h2>
+    <section class="card" aria-labelledby="leadsTitle">
+      <h2 id="leadsTitle">Leads</h2>
+
       <div class="filters">
-        <!-- These 'id' attributes are for JavaScript to find these inputs -->
-        <input id="q" placeholder="search name or company" />
+        <label for="q" class="visually-hidden">Search</label>
+        <input id="q" placeholder="Search name or company" />
+
+        <label for="status" class="visually-hidden">Status filter</label>
         <select id="status">
           <option value="">All</option>
           <option>New</option>
@@ -50,30 +52,30 @@
           <option>Qualified</option>
           <option>Lost</option>
         </select>
-        <!-- 'type="button"' is important so this button *doesn't* submit the form -->
+
         <button id="applyFilters" type="button">Apply</button>
       </div>
-      
+
       <div id="gridStatus" style="margin-bottom:8px; color:#555;"></div>
+
       <div class="leads-list">
-      <table id="grid">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Company</th>
-            <th>Status</th>
-            <th>Notes</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody></tbody> <!-- This will be populated by app.js -->
-      </table>
+        <table id="grid">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Company</th>
+              <th scope="col">Status</th>
+              <th scope="col">Notes</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody></tbody> <!-- Populated dynamically by app.js -->
+        </table>
       </div>
     </section>
   </main>
-  <!-- Our JavaScript file is linked at the end of the body. -->
-  <!-- This ensures all HTML elements are loaded before the script runs. -->
+
   <script src="app.js"></script>
 </body>
 </html>

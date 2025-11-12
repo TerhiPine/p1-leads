@@ -13,14 +13,12 @@ const gridStatus = document.querySelector("#gridStatus"); // Loading / empty mes
 // Functions
 // =======================
 
-// Display an error message
 function showError(msg) {
   formError.textContent = msg;
   formError.style.color = "red";
   formSuccess.textContent = "";
 }
 
-// Display a success message
 function showSuccess(msg) {
   formSuccess.textContent = msg;
   formSuccess.style.color = "green";
@@ -28,12 +26,10 @@ function showSuccess(msg) {
   setTimeout(() => formSuccess.textContent = "", 3000);
 }
 
-// Collect form data as an object
 function getFormData() {
   return Object.fromEntries(new FormData(form).entries());
 }
 
-// Send a new lead to the backend
 async function submitLead(data) {
   const res = await fetch("/api/leads", {
     method: "POST",
@@ -57,22 +53,20 @@ form.addEventListener("submit", async (e) => {
 
   const data = getFormData();
 
-  // Client-side validation
   if (!data.name.trim() || !data.email.trim()) {
     showError("Name and email are required.");
     return;
   }
 
-    // email basic format validation
   if (!data.email.includes("@")) {
     showError("Email is invalid. Must contain '@'.");
     return;
   }
 
   try {
-    await submitLead(data); // Send to backend
-    await load();           // Update the table
-    form.reset();           // Clear form
+    await submitLead(data);
+    await load();
+    form.reset();
     showSuccess("Lead added successfully!");
   } catch (err) {
     showError(err.message || "Network error, try again.");
@@ -80,7 +74,7 @@ form.addEventListener("submit", async (e) => {
 });
 
 // =======================
-// Search and filtering - add eventlistener
+// Search and filtering
 // =======================
 document.querySelector("#applyFilters").addEventListener("click", load);
 
@@ -88,8 +82,8 @@ document.querySelector("#applyFilters").addEventListener("click", load);
 // Load and render
 // =======================
 async function load() {
-  gridStatus.textContent = "Loading…"; // Show download status
-  grid.innerHTML = ""; // Clear table
+  gridStatus.textContent = "Loading…";
+  grid.innerHTML = "";
 
   const params = new URLSearchParams();
   if (q.value) params.set("q", q.value);
@@ -99,11 +93,7 @@ async function load() {
     const res = await fetch("/api/leads?" + params.toString());
     const leads = await res.json();
 
-    if (leads.length === 0) {
-      gridStatus.textContent = "No leads found.";
-    } else {
-      gridStatus.textContent = "";
-    }
+    gridStatus.textContent = leads.length === 0 ? "No leads found." : "";
 
     renderLeads(leads);
   } catch (err) {
@@ -111,9 +101,11 @@ async function load() {
   }
 }
 
-// Render leads to table
+// =======================
+// Render leads
+// =======================
 function renderLeads(leads) {
-  grid.innerHTML = ""; // Clear table
+  grid.innerHTML = "";
 
   leads.forEach(l => {
     const tr = document.createElement("tr");
@@ -132,13 +124,14 @@ function renderLeads(leads) {
 
     const tdStatus = document.createElement("td");
     tdStatus.dataset.label = "Status";
-
     const span = document.createElement("span");
     span.textContent = l.status || "New";
     span.className = `status ${l.status || "New"}`;
     tdStatus.appendChild(span);
 
+    // =======================
     // Notes
+    // =======================
     const tdNotes = document.createElement("td");
     tdNotes.dataset.label = "Notes";
 
@@ -148,6 +141,10 @@ function renderLeads(leads) {
     notesInput.className = "notes-edit";
     notesInput.rows = 2;
     notesInput.style.width = "100%";
+
+    // Accessibility
+    notesInput.setAttribute("aria-label", `Edit notes for ${l.name || "this lead"}`);
+
     tdNotes.appendChild(notesInput);
 
     // Actions
@@ -175,7 +172,6 @@ function renderLeads(leads) {
     grid.appendChild(tr);
   });
 
-  //
   bindActions();
   bindNotesEdit();
 }
@@ -196,13 +192,14 @@ function bindActions() {
           body: JSON.stringify({ status: b.dataset.s })
         });
       }
-      
-
-      load(); // Refresh the table to update the status badge
-      
+      load();
     });
   });
 }
+
+// =======================
+// Notes edit
+// =======================
 function bindNotesEdit() {
   document.querySelectorAll(".notes-edit").forEach(area => {
     area.addEventListener("change", async () => {
@@ -222,5 +219,6 @@ function bindNotesEdit() {
 // Initial load
 // =======================
 load();
+
 
 
