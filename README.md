@@ -1,5 +1,8 @@
 # Micro CRM Leads
 
+<img width="1920" height="385" alt="Screenshot (399)" src="https://github.com/user-attachments/assets/4725c6b2-26af-4ef3-acd1-6e20a7af8958" />
+
+
 A lightweight, browser-based CRM for managing leads. 
 Built with **HTML, CSS, JavaScript, and Node.js/Express**, this project allows users to add, view, update, and delete leads with a clean, responsive interface.
 
